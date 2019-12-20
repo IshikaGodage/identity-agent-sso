@@ -302,6 +302,12 @@ public class SAML2SSOManager {
             paramsMap.putAll(ssoAgentConfig.getQueryParams());
         }
 
+        //Add dynamic mobile parameter
+        String mobileParamName = "mobile";
+        if (StringUtils.isNotEmpty(request.getParameter(mobileParamName))) {
+            paramsMap.put(mobileParamName,new String[]{request.getParameter(mobileParamName)});
+        }
+
         StringBuilder htmlParams = new StringBuilder();
         for (Map.Entry<String, String[]> entry : paramsMap.entrySet()) {
             if (entry.getKey() != null && entry.getValue() != null && entry.getValue().length > 0) {
